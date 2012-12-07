@@ -1,5 +1,5 @@
 Name:           ipprint
-Cabal-version:  >= 1.2
+Cabal-version:  >= 1.6
 Build-type:     Simple
 Category:       Text
 Version:        0.4.2
