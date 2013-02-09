@@ -20,8 +20,8 @@ pshowWidth width v =
       s = show v
       tidy x =
           case readPrec_to_S skipBoring 0 x of
-            [((), tail)] -> "   " ++ tail
-            _            -> s
+            [((), tail')] -> "   " ++ tail'
+            _             -> s
 
 pprintWidth :: Show a => Int -> a -> IO ()
 pprintWidth width = putStrLn . pshowWidth width
@@ -35,4 +35,4 @@ pprint v = do
 skipBoring :: ReadPrec ()
 skipBoring =
     do { Ident "value" <- lexP; Punc  "=" <- lexP; return () } <++
-    do { lexP; skipBoring }
+    do { _ <- lexP; skipBoring }
