@@ -1,4 +1,4 @@
-module IPPrint(pshow, pprint) where
+module IPPrint(pshow, pshowWidth, pprint, pprintWidth) where
 
 import Extra.Terminal (getWidth)
 import Language.Haskell.Parser
@@ -20,17 +20,19 @@ pshowWidth width v =
       s = show v
       tidy x =
           case readPrec_to_S skipBoring 0 x of
-            [((), tail)] -> "   " ++ tail
-            _            -> s
+            [((), tail')] -> "   " ++ tail'
+            _             -> s
 
+pprintWidth :: Show a => Int -> a -> IO ()
+pprintWidth width = putStrLn . pshowWidth width
 
 pprint :: Show a => a -> IO ()
 pprint v = do
     mw <- getWidth
     let width = maybe defaultLineWidth id mw
-    putStrLn $ pshowWidth width v
+    pprintWidth width v
 
 skipBoring :: ReadPrec ()
 skipBoring =
     do { Ident "value" <- lexP; Punc  "=" <- lexP; return () } <++
-    do { lexP; skipBoring }
+    do { _ <- lexP; skipBoring }
