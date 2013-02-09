@@ -2,7 +2,7 @@ Name:           ipprint
 Cabal-version:  >= 1.6
 Build-type:     Simple
 Category:       Text
-Version:        0.4.2
+Version:        0.5
 License:        BSD3
 License-file:   LICENSE
 Author:         Gleb Alexeyev
