@@ -26,7 +26,7 @@ Library
     Build-Depends:  base, haskell-src
     Exposed-modules:
         IPPrint
-    Build-Depends: base >= 2 && <= 5, Extra >= 1.33 && < 1.50
+    Build-Depends: base >= 2 && <= 5, sr-extra >= 1.46.3.1
 
 Source-repository head
   type:              git
